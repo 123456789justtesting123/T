@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login Automation</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login Automation Demo</title>
 </head>
 <body>
+	<h1>Login Automation Demo</h1>
+	<label for="username">Username:</label>
+	<input type="text" id="username">
+	<br><br>
+	<label for="password">Password:</label>
+	<input type="password" id="password">
+	<br><br>
+	<label for="client-id">Client ID:</label>
+	<input type="text" id="client-id">
+	<br><br>
+	<button onclick="login()">Login</button>
+
 	<script>
 		function login() {
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					console.log("Logged in successfully!");
-				}
-			};
-			var url = "https://website.com/login";
-			var params = "username=myusername&password=mypassword";
-			xhttp.open("POST", "https://cors-anywhere.herokuapp.com/" + url, true);
-			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.setRequestHeader("x-requested-with", "xhr");
-			xhttp.send(params);
+			// Get the values of the input fields
+			var username = document.getElementById("username").value;
+			var password = document.getElementById("password").value;
+			var clientId = document.getElementById("client-id").value;
+
+			// Construct the URL for the login request
+			var loginUrl = "https://example.com/login?username=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password) + "&clientId=" + encodeURIComponent(clientId);
+
+			// Open a new tab with the login URL
+			window.open(loginUrl, "_blank");
+
+			// Close the current tab
+			window.close();
 		}
 	</script>
-	<button onclick="login()">Login</button>
 </body>
 </html>
